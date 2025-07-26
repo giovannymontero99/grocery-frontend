@@ -3,6 +3,7 @@ export const constant = {
     endPoints: {
         login: "api/auth/login",
         register: "api/auth/signup",
-        profile: "api/v1/profile/"
+        profile: "api/v1/profile/",
+        products: "api/v1/profile/products"
     }
 }

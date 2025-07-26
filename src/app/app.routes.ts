@@ -9,8 +9,8 @@ import { LogoutComponent } from './pages/logout/logout.component';
 export const routes: Routes = [
     { path: '', component: HomeComponent, title: 'Home' },
     { path: 'profile', component: ProfileComponent, title: 'Profile', canActivate: [AuthGuard] },
-    { path: 'login', component: LoginComponent, title: 'Login' },
-    { path: 'register', component: RegisterComponent, title: 'Register' },
+    { path: 'login', component: LoginComponent, title: 'Login',  },
+    { path: 'register', component: RegisterComponent, title: 'Register', },
     { path: 'logout', component: LogoutComponent, title: 'Logout', canActivate: [AuthGuard] },
     { path: '**', redirectTo: '', pathMatch: 'full' }
 ];

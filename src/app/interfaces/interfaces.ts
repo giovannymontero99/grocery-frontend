@@ -13,3 +13,14 @@ export interface UserRs {
     password?: string | null,
     fullName?: string
 }
+
+export interface Product {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  category: string;
+  createdAt: string;
+  updatedAt: string | null;
+  isActive: boolean;
+}
