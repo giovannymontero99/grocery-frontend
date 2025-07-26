@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ErrorComponent } from '../../components/error/error.component';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
@@ -9,11 +8,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
-  imports: [ErrorComponent, FormsModule, CommonModule, FormsModule, RouterModule, MatInputModule, MatButtonModule, MatCardModule, ReactiveFormsModule, MatSnackBarModule],
+  imports: [FormsModule, CommonModule, RouterModule, MatInputModule, MatButtonModule, MatCardModule, ReactiveFormsModule, MatSnackBarModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
