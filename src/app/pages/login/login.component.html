@@ -1,20 +1,35 @@
-<app-error [errorMessage]="errorMessage"></app-error>
+<div class="container">
+  <div class="left">
+    <h1>Hey, Hello!</h1>
+    <p>Join The Design System!</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo maiores natus iure corporis veritatis. Pariatur
+      consectetur itaque quibusdam deserunt et provident, illum aspernatur maiores laudantium voluptas corporis non
+      exercitationem ex?
+    </p>
+  </div>
 
-<div class="container vh-100 d-flex justify-content-center align-items-center">
-  <div class="card shadow p-4" style="min-width: 340px; border-radius: 1rem;">
-    <h2 class="text-center mb-4">Login</h2>
-      <div class="mb-3">
-        <label for="username" class="form-label">Username</label>
-        <input id="username" [(ngModel)]="username" type="text" class="form-control" placeholder="Enter your username" required>
-      </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input id="password" [(ngModel)]="password" type="password" class="form-control" placeholder="Enter your password" required>
-      </div>
-      <button type="submit" (click)="onLogin()" class="btn btn-warning w-100">Login</button>
-      <div class="text-center mt-3">
-        <span>Don't have an account?</span>
-        <button (click)="onRegister()" type="button" class="btn btn-outline-primary ms-2">Register</button>
-      </div>
+  <div class="right">
+    <div class="login-form">
+      <h2>Welcome Back</h2>
+      <p>Let's get started</p>
+
+      <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Username</mat-label>
+          <input matInput formControlName="username"  placeholder="Enter your username" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password" placeholder="Enter your password" />
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" class="full-width" [disabled]="formGroup.invalid" >Login</button>
+
+        <div class="footer">
+          <p>Don't have an account? <a routerLink="/register">Sign Up</a></p>
+        </div>
+    </form>
   </div>
 </div>

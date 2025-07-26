@@ -1,13 +1,19 @@
 import { Component } from '@angular/core';
 import { ErrorComponent } from '../../components/error/error.component';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
-  imports: [ErrorComponent, FormsModule],
+  imports: [ErrorComponent, FormsModule, CommonModule, FormsModule, RouterModule, MatInputModule, MatButtonModule, MatCardModule, ReactiveFormsModule, MatSnackBarModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
@@ -16,76 +22,59 @@ export class RegisterComponent {
 
   constructor(
     private authService: AuthService,
-    private router: Router
-  ){}
-
-
-  errorMessage: string = "";
-  username: string = "";
-  password: string = "";
-  fullName: string = "";
-  email: string = "";
-
-
-  onRegister(){
-    if (this.validateForm()) {
-      this.register()
-    }
+    private router: Router,
+    private fb: FormBuilder,
+    private snackBar: MatSnackBar
+  ){
+    this.formGroup = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(4)]],
+      fullname: ['', [Validators.required, Validators.minLength(8)]],
+      email: ['', [Validators.required, Validators.email]]
+    });
   }
 
-  // Resets the form fields to their initial values.
-  private resetForm() {
-    this.username = "";
-    this.password = "";
-    this.fullName = "";
-    this.email = "";
-  }
 
-  // Validates the form fields.
-  private validateForm(): boolean {
-    if (!this.username || !this.password || !this.fullName || !this.email) {
-      this.handleMessageError("All fields are required.");
-      return false;
-    }
-    this.errorMessage = "";
-    return true;
-  }
+  formGroup: FormGroup;
 
-  // Registers a new user.
-  private async register(){
+
+  /**
+   * Handles the form submission.
+   */
+  async onSubmit(){
 
     try {
+      
+      this.formGroup.markAllAsTouched();
+      if (this.formGroup.invalid) {
+        return;
+      }
+      const { fullname, email, username, password  } = this.formGroup.value;
+
       const response = await firstValueFrom(
         this.authService.register({
-          Name: this.username,
-          Email: this.email,
-          FullName: this.fullName,
-          Password: this.password
+          Name: username,
+          Email: email,
+          FullName: fullname.toUpperCase(),
+          Password: password
         })
       );
 
       this.authService.setToken(response.token);
-      this.router.navigate(['/profile']);
+      this.router.navigate(['/']);
+      
     } catch (error: any) {
-      if(error.status == 409){
-        this.handleMessageError(error.error.message);
-      }else{
-        this.handleMessageError(error.message);
+      if (error.status === 409) {
+        this.snackBar.open('User already exists', 'Close', {
+              duration: 4000,
+              panelClass: ['error-snackbar']
+        });
+      } else {
+        this.snackBar.open('An unexpected error occurred', 'Close', {
+          duration: 4000,
+          panelClass: ['error-snackbar']
+        });
       }
     }
   }
-  
-
-    /**
-   * Handles error messages by displaying them for a short duration.
-   *
-   * @param message - The error message to display.
-   */
-  private handleMessageError(message: string): void {
-    this.errorMessage = message;
-    setTimeout(() => {
-      this.errorMessage = "";
-    }, 3000);
-  }
-
 }

@@ -83,4 +83,13 @@ export class AuthService {
     return this.http.post(baseUrl + endPoint, user);
   }
 
+  /**
+   * Checks if the user is authenticated.
+   *
+   * @returns `true` if the user is authenticated, otherwise `false`.
+   */
+  isAuthenticated(): boolean {
+    return this.getToken() !== null;
+  }
+
 }
