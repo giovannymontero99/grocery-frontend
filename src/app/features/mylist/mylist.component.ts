@@ -14,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { firstValueFrom } from 'rxjs';
 import { UserService } from '../../core/services/user.service';
 import { UserProductRs } from '../../interfaces/interfaces';
+import { NavbarRoutesComponent } from '../../shared/components/navbar-routes/navbar-routes.component';
 
 @Component({
   standalone: true,
@@ -32,6 +33,7 @@ import { UserProductRs } from '../../interfaces/interfaces';
     MatCardModule,
     FormsModule,
     MatIconModule,
+    NavbarRoutesComponent
   ],
   templateUrl: './mylist.component.html',
   styleUrl: './mylist.component.scss',

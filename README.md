@@ -6,7 +6,7 @@ Folder Structure
             * guards/
             * interceptors/
             * services/
-            * models/                   # Interfaces & enums shared across the app
+            * models/
         * shared/                       # Reusable components, pipes, directives
             * components/
             * directives/

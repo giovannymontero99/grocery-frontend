@@ -15,6 +15,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { NavbarRoutesComponent } from '../../shared/components/navbar-routes/navbar-routes.component';
 
 @Component({
   standalone: true,
@@ -33,6 +34,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatCardModule,
     FormsModule,
     MatIconModule,
+    NavbarRoutesComponent
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
