@@ -76,10 +76,12 @@ export class MylistComponent implements OnInit {
   async addSaveFavorites(productId: number) {
     try {
       const product = this.favoriteProducts.find(fav => fav.userProductId === productId);
-      if (product) {
-        product.isSaved = !product.isSaved;
+      if (!product) {
+        console.error('Product not found for saving to favorites:', productId);
+        return;
       }
-      await firstValueFrom(this.userService.saveProductToFavorites(productId));
+      product.isSaved = !product.isSaved;
+      await firstValueFrom(this.userService.saveProductToFavorites(product));
     } catch (error) {
       console.error('Error saving to favorites:', error);
     }

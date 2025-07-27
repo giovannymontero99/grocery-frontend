@@ -37,7 +37,7 @@ export class UserService {
   }
 
   // Save a product to the favorite list
-  saveProductToFavorites(productId: number): Observable<any> {
+  saveProductToFavorites(productId: UserProductRs): Observable<any> {
     return this.http.post<any>(`${constant.baseurl}${constant.endPoints.addSaveFavoriteList}`, productId );
   }
 

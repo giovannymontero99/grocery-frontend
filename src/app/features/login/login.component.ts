@@ -51,7 +51,8 @@ export class LoginComponent implements OnInit {
     if (this.formGroup.valid) {
       const { username, password } = this.formGroup.value;
       try {
-        await firstValueFrom(this.authService.login({ Name: username, Password: password }));
+        const response = await firstValueFrom(this.authService.login({ Name: username, Password: password }));
+        this.authService.setToken(response.token);
         this.router.navigate(['/']);
       } catch (error: any) {
         if (error.status === 401) {
