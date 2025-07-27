@@ -59,7 +59,13 @@ export class LoginComponent implements OnInit {
             duration: 4000,
             panelClass: ['error-snackbar']
           });
-        } else {
+        } else if (error.status === 404) {
+          this.snackBar.open("User doesn't exist", 'Close', {
+            duration: 4000,
+            panelClass: ['error-snackbar']
+          });
+        }
+        else {
           this.snackBar.open('An error occurred. Please try again later.', 'Close', {
             duration: 4000,
             panelClass: ['error-snackbar']
