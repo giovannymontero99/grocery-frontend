@@ -11,10 +11,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
+import { MylistComponent } from '../../pages/mylist/mylist.component';
 
 @Component({
-  selector: 'app-routes',
   standalone: true,
+  selector: 'app-routes',
   imports: [
     CommonModule,
     MatSidenavModule,

@@ -18,6 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { RoutesComponent } from '../../components/routes/routes.component';
 
 @Component({
+  standalone: true,
   selector: 'app-profile',
   imports: [
     CommonModule,
@@ -37,8 +38,6 @@ import { RoutesComponent } from '../../components/routes/routes.component';
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
-  standalone: true,
-  providers: []
 })
 export class ProfileComponent implements OnInit {
 
