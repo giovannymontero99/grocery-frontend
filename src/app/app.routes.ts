@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './pages/login/login.component';
-import { HomeComponent } from './pages/home/home.component';
-import { ProfileComponent } from './pages/profile/profile.component';
-import { RegisterComponent } from './pages/register/register.component';
-import { AuthGuard } from './guard/AuthGuard';
-import { LogoutComponent } from './pages/logout/logout.component';
-import { MylistComponent } from './pages/mylist/mylist.component';
+import { HomeComponent } from './features/home/home.component';
+import { ProfileComponent } from './features/profile/profile.component';
+import { RegisterComponent } from './features/register/register.component';
+import { AuthGuard } from './core/guards/AuthGuard';
+import { LogoutComponent } from './features/logout/logout.component';
+import { MylistComponent } from './features/mylist/mylist.component';
+import { LoginComponent } from './features/login/login.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent, title: 'Home' },

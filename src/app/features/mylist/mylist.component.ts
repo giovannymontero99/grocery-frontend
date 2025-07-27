@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { RoutesComponent } from '../../components/routes/routes.component';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -13,7 +12,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { firstValueFrom } from 'rxjs';
-import { UserService } from '../../services/user.service';
+import { UserService } from '../../core/services/user.service';
 import { UserProductRs } from '../../interfaces/interfaces';
 
 @Component({
@@ -33,7 +32,6 @@ import { UserProductRs } from '../../interfaces/interfaces';
     MatCardModule,
     FormsModule,
     MatIconModule,
-    RoutesComponent
   ],
   templateUrl: './mylist.component.html',
   styleUrl: './mylist.component.scss',
@@ -47,12 +45,14 @@ export class MylistComponent implements OnInit {
 
   }
 
+  // Favorite products datasource
   favoriteProducts: UserProductRs[] = [];
 
   ngOnInit(): void {
     this.getFavoriteProducts()
   }
 
+  // Get favorite products
   private async getFavoriteProducts() {
     try {
       const products = await firstValueFrom(this.userService.getFavoriteProducts());
@@ -62,7 +62,7 @@ export class MylistComponent implements OnInit {
     }
   }
 
-
+  // Delete a product from favorites
   async deleteFromFavorites(productId: number) {
     try {
       await firstValueFrom(this.userService.deleteFromFavorites(productId));
@@ -71,5 +71,19 @@ export class MylistComponent implements OnInit {
       console.error('Error deleting from favorites:', error);
     }
   }
+
+  // Save a product to the favorite list
+  async addSaveFavorites(productId: number) {
+    try {
+      const product = this.favoriteProducts.find(fav => fav.userProductId === productId);
+      if (product) {
+        product.isSaved = !product.isSaved;
+      }
+      await firstValueFrom(this.userService.saveProductToFavorites(productId));
+    } catch (error) {
+      console.error('Error saving to favorites:', error);
+    }
+  }
+
 
 }

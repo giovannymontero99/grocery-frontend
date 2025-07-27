@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { constant } from '../../const/const';
+import { constant } from '../../../const/const';
 import { Observable } from 'rxjs';
-import { Product, UserProductRs, UserRs } from '../interfaces/interfaces';
+import { Product, UserProductRs, UserRs } from '../../interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +34,11 @@ export class UserService {
   // Delete a product from favorites
   deleteFromFavorites(productId: number): Observable<any> {
     return this.http.post<any>(`${constant.baseurl}${constant.endPoints.deleteFromFavorites}`, productId );
+  }
+
+  // Save a product to the favorite list
+  saveProductToFavorites(productId: number): Observable<any> {
+    return this.http.post<any>(`${constant.baseurl}${constant.endPoints.addSaveFavoriteList}`, productId );
   }
 
 }

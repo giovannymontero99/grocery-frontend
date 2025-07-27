@@ -1,7 +1,7 @@
 import { firstValueFrom } from 'rxjs';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { UserService } from './../../services/user.service';
+import { UserService } from '../../core/services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
@@ -15,7 +15,6 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-import { RoutesComponent } from '../../components/routes/routes.component';
 
 @Component({
   standalone: true,
@@ -34,7 +33,6 @@ import { RoutesComponent } from '../../components/routes/routes.component';
     MatCardModule,
     FormsModule,
     MatIconModule,
-    RoutesComponent
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',

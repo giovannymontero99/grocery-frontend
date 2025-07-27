@@ -19,30 +19,18 @@
                         delete
                     </mat-icon>
                 </button>
-                <button mat-icon-button (click)="(favorite.products?.id)">
-                    <mat-icon color="warn">
-                        check_box_outline_blank
+                <button mat-icon-button (click)="addSaveFavorites(favorite.userProductId)">
+
+                    <mat-icon color="warn" *ngIf="favorite.isSaved; else notSaved">
+                        check_box
                     </mat-icon>
+                    <ng-template #notSaved>
+                        <mat-icon color="warn">
+                            check_box_outline_blank
+                        </mat-icon>
+                    </ng-template>
                 </button>
             </div>
-
-            <!--
-
-            <div >
-                <mat-card-title>{{ favorite.product.name }} - ${{ favorite.product.price }}</mat-card-title>
-                <button mat-icon-button (click)="(favorite.product.id)">
-                    <mat-icon color="warn">
-                        {{ isFavorite(product.id) ? 'star' : 'star_border' }}
-                    </mat-icon>
-                </button>
-            </div>
-
-            <mat-card-content>
-                <p>{{ product.description }}</p>
-                <p><small>Category: {{ product.category }}</small></p>
-            </mat-card-content>
-            -->
         </mat-card>
-
     </mat-sidenav-content>
 </mat-sidenav-container>

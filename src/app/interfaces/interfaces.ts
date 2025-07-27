@@ -31,5 +31,6 @@ export interface UserProductRs {
   addedAt: string,
   idUser: number,
   idProduct: number,
+  isSaved: boolean,
   products?: Product
 }
