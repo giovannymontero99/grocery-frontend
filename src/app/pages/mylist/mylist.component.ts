@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RoutesComponent } from '../../components/routes/routes.component';
@@ -12,6 +12,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { firstValueFrom } from 'rxjs';
+import { UserService } from '../../services/user.service';
+import { UserProductRs } from '../../interfaces/interfaces';
 
 @Component({
   standalone: true,
@@ -35,6 +38,28 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './mylist.component.html',
   styleUrl: './mylist.component.scss',
 })
-export class MylistComponent {
+export class MylistComponent implements OnInit {
+
+
+  constructor(
+    private userService: UserService
+  ){
+
+  }
+
+  favoriteProducts: UserProductRs[] = [];
+
+  ngOnInit(): void {
+    this.getFavoriteProducts()
+  }
+
+  private async getFavoriteProducts() {
+    try {
+      const products = await firstValueFrom(this.userService.getFavoriteProducts());
+      this.favoriteProducts = products;
+    } catch (error) {
+      console.error('Error fetching favorite products:', error);
+    }
+  }
 
 }

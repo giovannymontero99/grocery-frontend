@@ -11,5 +11,39 @@
 
     <mat-sidenav-content>
 
+        <mat-card *ngFor="let favorite of favoriteProducts">
+            <div>
+                <mat-card-title>{{ favorite.products?.name }} - ${{ favorite.products?.price }}</mat-card-title>
+                <button mat-icon-button (click)="(favorite.products?.id)">
+                    <mat-icon color="warn">
+                        delete
+                    </mat-icon>
+
+                </button>
+                <button mat-icon-button (click)="(favorite.products?.id)">
+                    <mat-icon color="warn">
+                        check_box_outline_blank
+                    </mat-icon>
+                </button>
+            </div>
+
+            <!--
+
+            <div >
+                <mat-card-title>{{ favorite.product.name }} - ${{ favorite.product.price }}</mat-card-title>
+                <button mat-icon-button (click)="(favorite.product.id)">
+                    <mat-icon color="warn">
+                        {{ isFavorite(product.id) ? 'star' : 'star_border' }}
+                    </mat-icon>
+                </button>
+            </div>
+
+            <mat-card-content>
+                <p>{{ product.description }}</p>
+                <p><small>Category: {{ product.category }}</small></p>
+            </mat-card-content>
+            -->
+        </mat-card>
+
     </mat-sidenav-content>
 </mat-sidenav-container>

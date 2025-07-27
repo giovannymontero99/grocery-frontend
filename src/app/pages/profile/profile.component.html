@@ -1,6 +1,6 @@
 <mat-sidenav-container style="height: 100vh;">
 
-
+    <!-- Side Bar -->
     <mat-sidenav mode="side" opened>
         <nav style="padding: 1rem; display: flex; flex-direction: column; gap: 1rem;">
             <button mat-button routerLink="/" routerLinkActive="active">Home</button>
@@ -9,6 +9,7 @@
         </nav>
     </mat-sidenav>
 
+    <!-- Content -->
     <mat-sidenav-content>
 
         <mat-toolbar color="primary">
@@ -60,8 +61,8 @@
                             <div class="card-header">
                                 <mat-card-title>{{ product.name }} - ${{ product.price }}</mat-card-title>
                                 <button mat-icon-button (click)="toggleFavorite(product.id)">
-                                    <mat-icon color="warn">
-                                        {{ isFavorite(product.id) ? 'star' : 'star_border' }}
+                                    <mat-icon color="warn" >
+                                        add
                                     </mat-icon>
                                 </button>
                             </div>

@@ -119,12 +119,17 @@ export class ProfileComponent implements OnInit {
   }
 
   // Toggle favorite status
-  toggleFavorite(productId: number): void {
+  async toggleFavorite(productId: number): Promise<void> {
     const index = this.favoriteProductIds.indexOf(productId);
     if (index >= 0) {
       this.favoriteProductIds.splice(index, 1); // remove
     } else {
-      this.favoriteProductIds.push(productId); // add
+      try {
+        await firstValueFrom(this.userService.addProductToFavorites(productId));
+        this.favoriteProductIds.push(productId); // add
+      } catch (error) {
+        console.error(error);
+      }
     }
   }
 
