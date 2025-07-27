@@ -6,6 +6,7 @@ export const constant = {
         profile: "api/v1/profile/",
         products: "api/v1/profile/products",
         addProduct: "api/v1/profile/add_favorite_product",
-        getFavoritesProducts: "api/v1/profile/favorite_products"
+        getFavoritesProducts: "api/v1/profile/favorite_products",
+        deleteFromFavorites: "api/v1/profile/delete_favorite_product"
     }
 }

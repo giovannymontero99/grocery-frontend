@@ -14,11 +14,10 @@
         <mat-card *ngFor="let favorite of favoriteProducts">
             <div>
                 <mat-card-title>{{ favorite.products?.name }} - ${{ favorite.products?.price }}</mat-card-title>
-                <button mat-icon-button (click)="(favorite.products?.id)">
+                <button mat-icon-button (click)="deleteFromFavorites(favorite.userProductId)">
                     <mat-icon color="warn">
                         delete
                     </mat-icon>
-
                 </button>
                 <button mat-icon-button (click)="(favorite.products?.id)">
                     <mat-icon color="warn">

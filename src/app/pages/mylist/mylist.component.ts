@@ -62,4 +62,14 @@ export class MylistComponent implements OnInit {
     }
   }
 
+
+  async deleteFromFavorites(productId: number) {
+    try {
+      await firstValueFrom(this.userService.deleteFromFavorites(productId));
+      this.favoriteProducts = this.favoriteProducts.filter(fav => fav.userProductId !== productId);
+    } catch (error) {
+      console.error('Error deleting from favorites:', error);
+    }
+  }
+
 }
