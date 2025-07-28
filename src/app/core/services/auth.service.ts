@@ -4,7 +4,7 @@ import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, Observable, throwError } from 'rxjs';
 import { User } from '../../interfaces/interfaces';
-import { constant } from '../../../const/const';
+import { environment } from '../../../const/enviroments';
 
 @Injectable({
   providedIn: 'root'
@@ -66,8 +66,8 @@ export class AuthService {
    * @returns An observable of the login response.
    */
   login(user: User): Observable<any>{
-    const baseUrl = constant.baseurl
-    const endPoint = constant.endPoints.login
+    const baseUrl = environment.baseurl
+    const endPoint = environment.endPoints.login
     return this.http.post(baseUrl + endPoint, user);
   }
 
@@ -78,8 +78,8 @@ export class AuthService {
    * @returns An observable of the registration response.
    */
   public register(user: User): Observable<any> {
-    const baseUrl = constant.baseurl
-    const endPoint = constant.endPoints.register
+    const baseUrl = environment.baseurl
+    const endPoint = environment.endPoints.register
     return this.http.post(baseUrl + endPoint, user);
   }
 

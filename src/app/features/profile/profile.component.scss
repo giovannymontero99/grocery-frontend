@@ -1,3 +1,9 @@
+.dashboard {
+  display: flex;
+  padding: 2rem;
+}
+
+
 .container {
   padding: 1rem;
 }
@@ -18,7 +24,7 @@ mat-card {
   height: auto;
 }
 
-.filter-container > .expand {
+.filter-container>.expand {
   flex: 1;
 }
 
@@ -37,26 +43,28 @@ mat-card {
  * Styles for the product cards
  */
 
-.cards-container{
-  display: flex; 
+.cards-container {
+  display: flex;
   justify-content: space-between;
 }
 
-.cards-container > div{
+.cards-container>div {
   padding: 1rem;
 }
 
-.first-card-column{
+.first-card-column {
   flex: 2;
-  overflow-y: scroll; 
+  overflow-y: scroll;
   height: 100vh;
-  mat-card {
-    border: 1px solid #485eeb;
-  }
 }
 
-.second-card-column{
-  flex: 1; 
+mat-card:hover{
+  border: 1px solid rgb(141, 166, 219);
+}
+
+.second-card-column {
+  flex: 1;
+
   mat-card {
     padding: 1rem;
   }

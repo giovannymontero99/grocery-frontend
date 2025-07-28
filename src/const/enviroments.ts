@@ -1,5 +1,5 @@
-export const constant = {
-    baseurl: "https://localhost:44364/",
+export const environment = {
+    baseurl: "http://localhost:5000/",
     endPoints: {
         login: "api/auth/login",
         register: "api/auth/signup",

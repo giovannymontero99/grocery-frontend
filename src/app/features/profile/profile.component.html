@@ -8,96 +8,106 @@
     <!-- Content -->
     <mat-sidenav-content>
 
-        <mat-toolbar color="primary">
+        <mat-toolbar style="background-color: transparent;">
             <span>Hi {{ userState?.fullName?.toLocaleUpperCase() }}</span>
         </mat-toolbar>
 
-        <div class="container">
+        <div class="filter-container">
 
-            <div class="filter-container">
-
-                <div class="expand">
-                    <mat-form-field appearance="outline" class="full-width">
-                        <mat-label>Search by name</mat-label>
-                        <input matInput [(ngModel)]="searchTerm" placeholder="E.g. Wireless Mouse" />
-                    </mat-form-field>
-                </div>
-
-                <div class="expand">
-                    <mat-form-field appearance="outline" class="full-width">
-                        <mat-label>Filter by category</mat-label>
-                        <mat-select [(ngModel)]="selectedCategory">
-                            <mat-option value="">All</mat-option>
-                            <mat-option *ngFor="let category of uniqueCategories" [value]="category">
-                                {{ category }}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-
-                <div>
-                    <mat-button-toggle-group [(ngModel)]="sortDirection" exclusive>
-                        <mat-button-toggle value="asc">Price ↑</mat-button-toggle>
-                        <mat-button-toggle value="desc">Price ↓</mat-button-toggle>
-                    </mat-button-toggle-group>
-                </div>
+            <div class="expand">
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Search by name</mat-label>
+                    <input matInput [(ngModel)]="searchTerm" placeholder="E.g. Wireless Mouse" />
+                </mat-form-field>
             </div>
 
-
-            <div *ngIf="isLoading">Loading products...</div>
-
-            <div *ngIf="!isLoading && filteredProducts.length > 0">
-
-
-                <div class="cards-container">
-
-                    <div class="first-card-column">
-                        <mat-card (click)="selectProduct(product)" *ngFor="let product of filteredProducts"
-                            class="mb-2">
-                            <div class="card-header">
-                                <mat-card-title>{{ product.name }} - ${{ product.price }}</mat-card-title>
-                                <button mat-icon-button (click)="toggleFavorite(product.id)">
-                                    <mat-icon color="warn" >
-                                        add
-                                    </mat-icon>
-                                </button>
-                            </div>
-
-                            <mat-card-content>
-                                <p>{{ product.description }}</p>
-                                <p><small>Category: {{ product.category }}</small></p>
-                            </mat-card-content>
-                        </mat-card>
-                    </div>
-
-                    <div class="second-card-column" *ngIf="selectedProduct">
-                        <mat-card>
-                            <div class="card-header">
-                                <mat-card-title>{{ selectedProduct.name }}</mat-card-title>
-                                <button mat-icon-button (click)="selectProduct(null)">
-                                    <mat-icon color="warn">
-                                        close
-                                    </mat-icon>
-                                </button>
-                            </div>
-
-                            <mat-card-content>
-                                <p><strong>Description:</strong> {{ selectedProduct.description }}</p>
-                                <p><strong>Price:</strong> {{ selectedProduct.price }}</p>
-                                <p><strong>Category:</strong> {{ selectedProduct.category }}</p>
-                                <p><strong>Created At:</strong> {{ selectedProduct.createdAt }}</p>
-                                <p><strong>Active:</strong> {{ selectedProduct.isActive ? 'Yes' : 'No' }}</p>
-                            </mat-card-content>
-                        </mat-card>
-                    </div>
-                </div>
-
+            <div class="expand">
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Filter by category</mat-label>
+                    <mat-select [(ngModel)]="selectedCategory">
+                        <mat-option value="">All</mat-option>
+                        <mat-option *ngFor="let category of uniqueCategories" [value]="category">
+                            {{ category }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
             </div>
 
-            <div *ngIf="!isLoading && filteredProducts.length === 0">
-                <p>No matching products found.</p>
+            <div>
+                <mat-button-toggle-group [(ngModel)]="sortDirection" exclusive>
+                    <mat-button-toggle value="asc">Price ↑</mat-button-toggle>
+                    <mat-button-toggle value="desc">Price ↓</mat-button-toggle>
+                </mat-button-toggle-group>
             </div>
         </div>
+
+        <content class="dashboard">
+
+            <section style="width: 80rem;" >
+
+                <div *ngIf="isLoading">Loading products...</div>
+
+                <div *ngIf="!isLoading && filteredProducts.length > 0">
+
+
+                    <div class="cards-container">
+
+                        <div class="first-card-column">
+                            <mat-card (click)="selectProduct(product)" *ngFor="let product of filteredProducts"
+                                class="mb-2">
+                                <div class="card-header">
+                                    <mat-card-title>{{ product.name }} - ${{ product.price }}</mat-card-title>
+                                    <button mat-icon-button (click)="toggleFavorite(product.id)">
+                                        <mat-icon color="warn">
+                                            add
+                                        </mat-icon>
+                                    </button>
+                                </div>
+
+                                <mat-card-content>
+                                    <p>{{ product.description }}</p>
+                                    <p><small>Category: {{ product.category }}</small></p>
+                                </mat-card-content>
+                            </mat-card>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div *ngIf="!isLoading && filteredProducts.length === 0">
+                    <p>No matching products found.</p>
+                </div>
+
+
+
+            </section>
+
+            <section style="display: flex; width: 100%; justify-content: center; padding: 1rem;" >
+                <div class="second-card-column" *ngIf="selectedProduct">
+                    <mat-card>
+                        <div class="card-header">
+                            <mat-card-title>{{ selectedProduct.name }}</mat-card-title>
+                            <button mat-icon-button (click)="selectProduct(null)">
+                                <mat-icon color="warn">
+                                    close
+                                </mat-icon>
+                            </button>
+                        </div>
+
+                        <mat-card-content>
+                            <p><strong>Description:</strong> {{ selectedProduct.description }}</p>
+                            <p><strong>Price:</strong> {{ selectedProduct.price }}</p>
+                            <p><strong>Category:</strong> {{ selectedProduct.category }}</p>
+                            <p><strong>Created At:</strong> {{ selectedProduct.createdAt }}</p>
+                            <p><strong>Active:</strong> {{ selectedProduct.isActive ? 'Yes' : 'No' }}</p>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </section>
+
+        </content>
+
+
 
 
 

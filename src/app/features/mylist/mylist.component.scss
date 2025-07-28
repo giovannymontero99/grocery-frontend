@@ -1,0 +1,14 @@
+.dashboard{
+    display: flex;
+    height: 100vh;
+}
+
+.dashboard > div {
+    flex: 1;
+    padding: 2rem;
+}
+
+.dashboard > div:first-child {
+    flex: 2;
+}
+

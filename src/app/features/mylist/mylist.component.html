@@ -7,26 +7,44 @@
 
     <mat-sidenav-content>
 
-        <mat-card *ngFor="let favorite of favoriteProducts">
-            <div>
-                <mat-card-title>{{ favorite.products?.name }} - ${{ favorite.products?.price }}</mat-card-title>
-                <button mat-icon-button (click)="deleteFromFavorites(favorite.userProductId)">
-                    <mat-icon color="warn">
-                        delete
-                    </mat-icon>
-                </button>
-                <button mat-icon-button (click)="addSaveFavorites(favorite.userProductId)">
+        <content class="dashboard">
 
-                    <mat-icon color="warn" *ngIf="favorite.isSaved; else notSaved">
-                        check_box
-                    </mat-icon>
-                    <ng-template #notSaved>
-                        <mat-icon color="warn">
-                            check_box_outline_blank
-                        </mat-icon>
-                    </ng-template>
-                </button>
+            <div>
+                <mat-card style="margin-bottom: 1rem;" *ngFor="let favorite of favoriteProducts">
+                    <div style="padding: .5rem; display: flex; justify-content: space-between; ">
+                        <mat-card-title>{{ favorite.products?.name }} - ${{ favorite.products?.price }}</mat-card-title>
+                        <div>
+
+                            <button mat-icon-button (click)="deleteFromFavorites(favorite.userProductId)">
+                                <mat-icon color="warn">
+                                    delete
+                                </mat-icon>
+                            </button>
+                            <button mat-icon-button (click)="addSaveFavorites(favorite.userProductId)">
+
+                                <mat-icon color="warn" *ngIf="favorite.isSaved; else notSaved">
+                                    check_box
+                                </mat-icon>
+                                <ng-template #notSaved>
+                                    <mat-icon color="warn">
+                                        check_box_outline_blank
+                                    </mat-icon>
+                                </ng-template>
+                            </button>
+
+                        </div>
+
+                    </div>
+                </mat-card>
             </div>
-        </mat-card>
+
+            <div>
+
+            </div>
+
+
+        </content>
+
+
     </mat-sidenav-content>
 </mat-sidenav-container>

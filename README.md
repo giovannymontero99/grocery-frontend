@@ -1,4 +1,12 @@
-Folder Structure
+# GroceryFrontend - Angular App
+
+# Quick Start
+```node
+npm install
+ng serve
+```
+
+## Folder Structure
 
 * src/
     * app/
@@ -27,3 +35,4 @@ Folder Structure
     * app-routing.module.ts        # Main routes with lazy loading
     * app.component.ts
     * app.module.ts
+

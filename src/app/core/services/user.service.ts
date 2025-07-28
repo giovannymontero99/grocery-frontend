@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { constant } from '../../../const/const';
+import { environment } from '../../../const/enviroments';
 import { Observable } from 'rxjs';
 import { Product, UserProductRs, UserRs } from '../../interfaces/interfaces';
 
@@ -13,32 +13,32 @@ export class UserService {
 
   // Get user profile
   getUserProfile(): Observable<UserRs> {
-    return this.http.get<UserRs>(`${constant.baseurl}${constant.endPoints.profile}`);
+    return this.http.get<UserRs>(`${environment.baseurl}${environment.endPoints.profile}`);
   }
 
   // Get all products
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${constant.baseurl}${constant.endPoints.products}`);
+    return this.http.get<Product[]>(`${environment.baseurl}${environment.endPoints.products}`);
   }
 
   // Add a product to favorites
   addProductToFavorites(productId: number): Observable<any> {
-    return this.http.post<any>(`${constant.baseurl}${constant.endPoints.addProduct}`, productId );
+    return this.http.post<any>(`${environment.baseurl}${environment.endPoints.addProduct}`, productId );
   }
 
   // Get favorite products
   getFavoriteProducts(): Observable<UserProductRs[]> {
-    return this.http.get<UserProductRs[]>(`${constant.baseurl}${constant.endPoints.getFavoritesProducts}`);
+    return this.http.get<UserProductRs[]>(`${environment.baseurl}${environment.endPoints.getFavoritesProducts}`);
   }
 
   // Delete a product from favorites
   deleteFromFavorites(productId: number): Observable<any> {
-    return this.http.post<any>(`${constant.baseurl}${constant.endPoints.deleteFromFavorites}`, productId );
+    return this.http.post<any>(`${environment.baseurl}${environment.endPoints.deleteFromFavorites}`, productId );
   }
 
   // Save a product to the favorite list
   saveProductToFavorites(productId: UserProductRs): Observable<any> {
-    return this.http.post<any>(`${constant.baseurl}${constant.endPoints.addSaveFavoriteList}`, productId );
+    return this.http.post<any>(`${environment.baseurl}${environment.endPoints.addSaveFavoriteList}`, productId );
   }
 
 }
